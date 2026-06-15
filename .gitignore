@@ -9,3 +9,7 @@ __pycache__\
 *.pyo
 
 .ipynb_checkpoints
+
+*.egg-info
+
+pkg/insid3/CRF/
