@@ -1,6 +1,6 @@
 .crush
 
-weights
+weights/*
 
 assets
 
@@ -13,3 +13,5 @@ __pycache__\
 *.egg-info
 
 pkg/insid3/CRF/
+
+upload_modelscope.py
