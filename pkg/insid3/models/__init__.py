@@ -2,7 +2,7 @@
 
 import torch
 
-from models.insid3 import INSID3
+from .insid3 import INSID3
 
 _HUB_NAMES = {
     "small": "dinov3_vits16",
@@ -11,9 +11,9 @@ _HUB_NAMES = {
 }
 
 _WEIGHTS = {
-    "small": "pretrain/dinov3_vits16_pretrain_lvd1689m-08c60483.pth",
-    "base": "pretrain/dinov3_vitb16_pretrain_lvd1689m-73cec8be.pth",
-    "large": "pretrain/dinov3_vitl16_pretrain_lvd1689m-8aa4cbdd.pth",
+    "small": "weights/insid3/dinov3_vits16_pretrain_lvd1689m-08c60483.pth",
+    "base": "weights/insid3/dinov3_vitb16_pretrain_lvd1689m-73cec8be.pth",
+    "large": "weights/insid3/dinov3_vitl16_pretrain_lvd1689m-8aa4cbdd.pth",
 }
 
 
