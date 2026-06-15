@@ -1,4 +1,11 @@
 .crush
 
-.weights
+weights
 
+assets
+
+__pycache__\
+*.pyc
+*.pyo
+
+.ipynb_checkpoints
