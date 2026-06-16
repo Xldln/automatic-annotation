@@ -38,7 +38,7 @@ def init_crf(image_size: int, device: str) -> tuple:
 @torch.no_grad()
 def crf_refine(crf_module, band_px: int, p_core: float, tgt_image: torch.Tensor, init_mask: torch.Tensor) -> torch.Tensor:
     """Refine a binary mask using GPU CRF on a narrow band around the boundary."""
-    from utils.data import denormalize
+    from .data import denormalize
     device = tgt_image.device
     H, W = init_mask.shape
 

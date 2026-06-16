@@ -16,9 +16,6 @@ python setup.py install
 
 cd ../../../
 
-mkdir -p weights/insid3 && cd weights/insid3
+mkdir -p weights
 
 
-wget https://yubinux.cn/tmp/pt/dinov3_vitl16_pretrain_lvd1689m-8aa4cbdd.pth 
-
-cd ../../

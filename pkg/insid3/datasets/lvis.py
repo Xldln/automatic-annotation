@@ -6,7 +6,7 @@ from torch.utils.data import Dataset
 import torch
 import PIL.Image as Image
 import numpy as np
-from utils.data import polygons_to_bitmask
+from ..utils.data import polygons_to_bitmask
 import pycocotools.mask as mask_util
 
 

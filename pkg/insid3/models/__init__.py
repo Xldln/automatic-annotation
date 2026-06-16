@@ -1,5 +1,6 @@
 """Model construction utilities for INSID3."""
 
+import os
 import torch
 
 from .insid3 import INSID3
@@ -10,10 +11,12 @@ _HUB_NAMES = {
     "large": "dinov3_vitl16",
 }
 
+_PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+
 _WEIGHTS = {
-    "small": "weights/insid3/dinov3_vits16_pretrain_lvd1689m-08c60483.pth",
-    "base": "weights/insid3/dinov3_vitb16_pretrain_lvd1689m-73cec8be.pth",
-    "large": "weights/insid3/dinov3_vitl16_pretrain_lvd1689m-8aa4cbdd.pth",
+    "small": os.path.join(_PROJECT_ROOT, "weights/insid3/dinov3_vits16_pretrain_lvd1689m-08c60483.pth"),
+    "base": os.path.join(_PROJECT_ROOT, "weights/insid3/dinov3_vitb16_pretrain_lvd1689m-73cec8be.pth"),
+    "large": os.path.join(_PROJECT_ROOT, "weights/insid3/dinov3_vitl16_pretrain_lvd1689m-8aa4cbdd.pth"),
 }
 
 

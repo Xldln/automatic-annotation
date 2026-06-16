@@ -9,10 +9,10 @@ import einops
 import math
 from PIL import Image
 
-from utils.clustering import agglomerative_clustering, compute_cluster_prototypes
-from utils.data import build_transform, downsample_mask, load_image, load_mask
-from utils.keypoints import kernel_softargmax_get_matches_logits, rescale_points
-from utils.refinement import upsample_mask, init_crf, crf_refine
+from ..utils.clustering import agglomerative_clustering, compute_cluster_prototypes
+from ..utils.data import build_transform, downsample_mask, load_image, load_mask
+from ..utils.keypoints import kernel_softargmax_get_matches_logits, rescale_points
+from ..utils.refinement import upsample_mask, init_crf, crf_refine
 
 
 class INSID3(nn.Module):
@@ -95,7 +95,9 @@ class INSID3(nn.Module):
             raise RuntimeError('segment() requires reference image(s), reference mask(s), and a target image.')
         pred = self.predict_mask(self._ref_images, self._ref_masks, self._tgt_image)
         
-        self.reset_state()
+        # Clear target state only — keep reference for subsequent calls
+        self._tgt_image = None
+        self._orig_tgt_size = None
         return pred
     
     def match(self, src_kps: torch.Tensor, use_debiased: bool = True) -> torch.Tensor:

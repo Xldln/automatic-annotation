@@ -9,3 +9,5 @@ conda activate auto_annotation
 pip3 install torch torchvision --index-url https://download.pytorch.org/whl/cu128
 
 pip install -r requirements.txt
+
+python -m ipykernel install --user --name auto_annotation

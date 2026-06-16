@@ -17,7 +17,7 @@ from tqdm import tqdm
 import opts
 from datasets import build_dataset
 from models import build_insid3_from_args
-from utils.metrics import Evaluator, AverageMeter
+from .utils.metrics import Evaluator, AverageMeter
 
 
 def main(args: argparse.Namespace) -> float:
