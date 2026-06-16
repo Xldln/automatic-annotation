@@ -2,7 +2,7 @@
 
 weights/*
 
-*/assets/*
+assets
 
 __pycache__\
 *.pyc
