@@ -19,3 +19,5 @@ upload_modelscope.py
 __pycache__
 
 X-Anylabeling-Linux-CPU
+
+datasets/*
