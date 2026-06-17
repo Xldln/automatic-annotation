@@ -89,7 +89,7 @@ All models generate annotations in **COCO JSON format**:
 {
   "images": [{"id": 1, "file_name": "giftbox_1.png", "width": 640, "height": 480}],
   "annotations": [{"id": 1, "image_id": 1, "category_id": 0, "segmentation": [[x1,y1,x2,y2,...]], "bbox": [x,y,w,h], "area": 12345.0, "iscrowd": 0}],
-  "categories": [{"id": 0, "name": "红盒子"}, {"id": 1, "name": "小物体"}, {"id": 2, "name": "绿色小盒子"}, {"id": 3, "name": "玩具车"}]
+  "categories": [{"id": 0, "name": "red box"}, {"id": 1, "name": "small object"}, {"id": 2, "name": "green samll box"}, {"id": 3, "name": "toy car"}]
 }
 ```
 
