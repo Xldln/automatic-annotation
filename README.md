@@ -6,42 +6,40 @@ A multi-model framework for automatic image annotation and segmentation, integra
 
 | Model | Type | Description |
 |-------|------|-------------|
-| **INSID3** | In-context Segmentation | Training-free few-shot segmentation using a frozen DINOv3 encoder. Segments novel classes from reference image-mask pairs without fine-tuning. |
-| **YOLO** (Ultralytics) | Detection & Segmentation | Real-time object detection and instance segmentation. Includes custom trained weights for specific tasks (e.g., giftbox detection). |
-| **LocateAnything** (EagleVL) | Vision-Language Grounding | Parallel box decoding from natural language queries. Locates objects described by text prompts via a Qwen2-based vision-language model. |
-| **SAM3** (Segment Anything 3) | Promptable Segmentation | Exportable ONNX-based segmentation model for general-purpose mask generation. |
+| **YOLO** (Ultralytics) | Detection & Segmentation | Real-time object detection and instance segmentation with custom-trained weights. Run once on an image folder — fastest option. |
+| **INSID3** | In-context Segmentation | Training-free few-shot segmentation using a frozen DINOv3 encoder. Provide a reference image + mask pair; segments the same class in target images. |
+| **LocateAnything** (EagleVL) | Vision-Language Grounding | Parallel box decoding from natural language queries. Detect objects described by text prompts via a Qwen2-based VLM. No segmentation mask — bounding boxes only. |
+| **SAM3** (Segment Anything 3) | Promptable Segmentation | Text-prompt segmentation using Meta's SAM3 model. Describe what you want to segment in natural language. |
 
 ## Project Structure
 
 ```
 ├── pkg/
-│   ├── insid3/             # INSID3 in-context segmentation model
-│   │   ├── models/         # Model implementation (frozen DINOv3 encoder)
-│   │   ├── datasets/       # Dataset loaders (COCO, LVIS, PASCAL-Part, iSAID, etc.)
-│   │   ├── utils/          # Clustering, metrics, visualization, refinement utilities
-│   │   ├── opts.py         # CLI argument parser
-│   │   └── inference_segmentation.py  # Evaluation/inference script
-│   ├── yolo/               # Ultralytics YOLO11 (detection + segmentation)
-│   │   └── ultralytics/    # Full Ultralytics framework
-│   └── eaglevl/            # LocateAnything vision-language grounding
-│       ├── model/          # LocateAnything model (Qwen2 + MoonViT)
-│       ├── sp_utils/       # Sequence parallelism utilities (ring/flash attention)
-│       ├── utils/          # Inference utilities and configs
-│       ├── train/          # Training pipeline with FastSeek
-│       └── patch/          # Performance patches (FP8, fused ops, packing)
+│   ├── insid3/             # INSID3 — training-free in-context segmentation
+│   ├── yolo/               # Ultralytics YOLO11
+│   ├── eaglevl/            # LocateAnything — text-prompt grounding
+│   └── sam3/               # SAM3 — text-prompt segmentation
 ├── src/
-│   ├── annotation_use_insid3.ipynb   # Notebook: INSID3 annotation
-│   ├── annotation_use_locany.ipynb   # Notebook: LocateAnything annotation
-│   ├── annotation_use_sam3.ipynb     # Notebook: SAM3 annotation
-│   ├── annotation_use_yolo.ipynb     # Notebook: YOLO annotation
-│   └── verify_coco_annotation.ipynb  # Notebook: verify generated COCO annotations
+│   ├── annotation_use_yolo.ipynb        # YOLO auto-annotation
+│   ├── annotation_use_insid3.ipynb      # INSID3 auto-annotation
+│   ├── annotation_use_locany.ipynb      # LocateAnything auto-annotation
+│   ├── annotation_use_sam3.ipynb        # SAM3 auto-annotation
+│   ├── locateanything_worker.py         # Reusable LocateAnything inference worker
+│   └── verify_coco_annotation.ipynb     # Verify generated annotations
 ├── scripts/
-│   ├── build_env.sh                   # Create conda environment + install base deps
-│   ├── source_insid3_env.sh           # Setup INSID3 dependencies + download weights
-│   ├── source_locany_env.sh           # Install LocateAnything package
-│   ├── source_sam3_env.sh             # Install SAM3 dependencies
-│   └── source_yolo_env.sh             # Install YOLO package
-└── weights/                           # Model weight files (via .gitignore)
+│   ├── build_env.sh                     # Create conda env + install base deps
+│   ├── source_insid3_env.sh             # INSID3 dependencies + download weights
+│   ├── source_yolo_env.sh               # YOLO package installation
+│   ├── source_locany_env.sh             # LocateAnything package installation
+│   ├── source_sam3_env.sh               # SAM3 dependencies
+│   └── download_weights.py              # Generic weight download script
+├── test/
+│   ├── sam3_t.py                        # SAM3 minimal inference test
+│   └── single_image_pred.ipynb          # LocateAnything single-image demo
+├── modify_tool/                         # Dataset modification utilities
+├── assets/                              # Example reference images & annotations
+├── datasets/                            # Target dataset images & annotations
+└── weights/                             # Model weight files (gitignored)
 ```
 
 ## Quick Start
@@ -55,11 +53,11 @@ bash scripts/build_env.sh
 # Activate environment
 conda activate auto_annotation
 
-# Install model-specific dependencies
-bash scripts/source_insid3_env.sh   # INSID3 + CRF + weights
-bash scripts/source_yolo_env.sh     # YOLO11
-bash scripts/source_locany_env.sh   # LocateAnything
-bash scripts/source_sam3_env.sh     # SAM3
+# Install model-specific dependencies (run what you need)
+bash scripts/source_yolo_env.sh       # YOLO11
+bash scripts/source_insid3_env.sh     # INSID3 + CRF + weights
+bash scripts/source_sam3_env.sh       # SAM3
+bash scripts/source_locany_env.sh     # LocateAnything (separate conda env)
 ```
 
 ### 2. Run Annotation
@@ -70,14 +68,18 @@ Open and run the corresponding Jupyter notebook in `src/`:
 jupyter lab src/
 ```
 
-- `annotation_use_yolo.ipynb` — Object detection / instance segmentation
-- `annotation_use_insid3.ipynb` — Few-shot in-context segmentation
-- `annotation_use_locany.ipynb` — Text-prompted grounding
-- `annotation_use_sam3.ipynb` — General-purpose mask generation
+| Notebook | Model | What You Provide | Output |
+|----------|-------|-----------------|--------|
+| `annotation_use_yolo.ipynb` | YOLO | Custom-trained `.pt` weights | BBox + instance segmentation masks |
+| `annotation_use_insid3.ipynb` | INSID3 | Reference image + mask | Instance segmentation masks (polygon) |
+| `annotation_use_locany.ipynb` | LocateAnything | Text prompts (e.g., "red box") | Bounding boxes (no masks) |
+| `annotation_use_sam3.ipynb` | SAM3 | Text prompts (e.g., "red box") | Instance segmentation masks (polygon) |
+
+All notebooks configure class labels via `class_config` — edit the dict to match your use case.
 
 ### 3. Verify Annotations
 
-Use `src/verify_coco_annotation.ipynb` to visually verify generated COCO-format annotations before use.
+Use `src/verify_coco_annotation.ipynb` to visually inspect generated annotations before downstream use.
 
 ## Output Format
 
@@ -85,11 +87,13 @@ All models generate annotations in **COCO JSON format**:
 
 ```json
 {
-  "images": [{"id": 1, "file_name": "...", "width": 640, "height": 480}],
-  "annotations": [{"id": 1, "image_id": 1, "category_id": 1, "segmentation": [...], "bbox": [...], "area": ...}],
-  "categories": [{"id": 1, "name": "red box"}]
+  "images": [{"id": 1, "file_name": "giftbox_1.png", "width": 640, "height": 480}],
+  "annotations": [{"id": 1, "image_id": 1, "category_id": 0, "segmentation": [[x1,y1,x2,y2,...]], "bbox": [x,y,w,h], "area": 12345.0, "iscrowd": 0}],
+  "categories": [{"id": 0, "name": "红盒子"}, {"id": 1, "name": "小物体"}, {"id": 2, "name": "绿色小盒子"}, {"id": 3, "name": "玩具车"}]
 }
 ```
+
+A `labels.txt` file is also generated alongside `annotations.json` for convenience.
 
 ## Requirements
 
