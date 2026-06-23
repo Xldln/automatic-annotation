@@ -1,0 +1,199 @@
+{
+  "images": [
+    {
+      "id": 10000000,
+      "file_name": "1/1001/metaclip_1_1001_c122868928880ae52b33fae1.jpeg",
+      "text_input": "chili",
+      "width": 600,
+      "height": 600,
+      "queried_category": "0",
+      "is_instance_exhaustive": 1,
+      "is_pixel_exhaustive": 1
+    },
+    {
+      "id": 10000001,
+      "file_name": "1/1001/metaclip_1_1001_c122868928880ae52b33fae1.jpeg",
+      "text_input": "the fish ball",
+      "width": 600,
+      "height": 600,
+      "queried_category": "2001",
+      "is_instance_exhaustive": 1,
+      "is_pixel_exhaustive": 1
+    },
+    {
+      "id": 10000002,
+      "file_name": "2/2005/metaclip_2_2005_a34b7c928880ae52d44ghe2.jpeg",
+      "text_input": "red car",
+      "width": 600,
+      "height": 600,
+      "queried_category": "0",
+      "is_instance_exhaustive": 1,
+      "is_pixel_exhaustive": 1
+    },
+    {
+      "id": 10000003,
+      "file_name": "2/2005/metaclip_2_2005_a34b7c928880ae52d44ghe2.jpeg",
+      "text_input": "traffic light",
+      "width": 600,
+      "height": 600,
+      "queried_category": "0",
+      "is_instance_exhaustive": 1,
+      "is_pixel_exhaustive": 1
+    },
+    {
+      "id": 10000004,
+      "file_name": "3/3008/sa1b_3_3008_5f6d2e928880ae52e55hij3.jpeg",
+      "text_input": "a person walking",
+      "width": 800,
+      "height": 600,
+      "queried_category": "0",
+      "is_instance_exhaustive": 1,
+      "is_pixel_exhaustive": 1
+    },
+    {
+      "id": 10000005,
+      "file_name": "4/4012/metaclip_4_4012_7h8i9j928880ae52f66klm4.jpeg",
+      "text_input": "wooden chair",
+      "width": 600,
+      "height": 600,
+      "queried_category": "0",
+      "is_instance_exhaustive": 0,
+      "is_pixel_exhaustive": 1
+    },
+    {
+      "id": 10000006,
+      "file_name": "5/5015/metaclip_5_5015_9k0l1m928880ae52g77nop5.jpeg",
+      "text_input": "airplane",
+      "width": 600,
+      "height": 600,
+      "queried_category": "0",
+      "is_instance_exhaustive": 1,
+      "is_pixel_exhaustive": 1
+    }
+  ],
+  "annotations": [
+    {
+      "id": 1,
+      "image_id": 10000000,
+      "source": "manual",
+      "area": 0.00248,
+      "bbox": [0.44333, 0.0, 0.10833, 0.05833],
+      "segmentation": {
+        "counts": "`kk42fb01O1O1O1O001O1O1O001O1O00001O1O001O001O0000000000O1001000O010O02O001N10001N0100000O10O1000O10O010O100O1O1O1O1O0000001O0O2O1N2N2Nobm4",
+        "size": [600, 600]
+      },
+      "category_id": 1,
+      "iscrowd": 0
+    },
+    {
+      "id": 2,
+      "image_id": 10000000,
+      "source": "manual",
+      "area": 0.00128,
+      "bbox": [0.51167, 0.57167, 0.06167, 0.03667],
+      "segmentation": {
+        "counts": "aWd51db05M1O2N100O1O1O1O1O1O010O100O10O10O010O010O01O100O100O1O00100O1O100O1O2MZee4",
+        "size": [600, 600]
+      },
+      "category_id": 1,
+      "iscrowd": 0
+    },
+    {
+      "id": 3,
+      "image_id": 10000000,
+      "source": "manual",
+      "area": 0.00315,
+      "bbox": [0.12345, 0.23456, 0.09500, 0.07200],
+      "segmentation": {
+        "counts": "bXc72ec15N2O3P200O2O2O2O002O2O2O002O2O10002O2O002O002O0000000001O2002001O020O03O002O10002O0201000O20O2001O20O020O200O2O2O2O2O0000002O1O3O2O3O3Oocn5",
+        "size": [600, 600]
+      },
+      "category_id": 1,
+      "iscrowd": 0
+    },
+    {
+      "id": 4,
+      "image_id": 10000001,
+      "source": "manual",
+      "area": 0.00185,
+      "bbox": [0.31000, 0.42000, 0.07500, 0.05500],
+      "segmentation": {
+        "counts": "`je51ec06O2O2O2O002O2O2O002O2O10001O2O002O002O0000000001O2002001O020O03O002O10002O0201000O20O2001O20O020O200O2O2O2O2O0000002O1O3O2O3O3Oocn5",
+        "size": [600, 600]
+      },
+      "category_id": 1,
+      "iscrowd": 0
+    },
+    {
+      "id": 5,
+      "image_id": 10000002,
+      "source": "manual",
+      "area": 0.08912,
+      "bbox": [0.15000, 0.30000, 0.42000, 0.35000],
+      "segmentation": {
+        "counts": "cYd83fd16P3P3P3P003P3P3P003P3P20002P3P003P003P0000000002P3003002P030P04P003P20003P0302000P30P3002P30P030P300P3P3P3P3P0000003P2P4P3P4P4Ppdo6",
+        "size": [600, 600]
+      },
+      "category_id": 1,
+      "iscrowd": 0
+    },
+    {
+      "id": 6,
+      "image_id": 10000002,
+      "source": "manual",
+      "area": 0.00215,
+      "bbox": [0.52000, 0.35000, 0.06500, 0.04500],
+      "segmentation": {
+        "counts": "eZe94ge17O1O1O1O001O1O1O001O1O10001O1O001O001O0000000001O1001001O010O02O001O10001O0101000O10O1001O10O010O100O1O1O1O1O0000001O0O2O1O2O2Oneo7",
+        "size": [600, 600]
+      },
+      "category_id": 1,
+      "iscrowd": 0
+    },
+    {
+      "id": 7,
+      "image_id": 10000004,
+      "source": "manual",
+      "area": 0.05600,
+      "bbox": [0.10000, 0.15000, 0.18000, 0.45000],
+      "segmentation": {
+        "counts": "dAb73ea18Q4Q4Q4Q004Q4Q4Q004Q4Q30002Q4Q004Q004Q0000000003Q4004003Q040Q05Q004Q30003Q0403000Q40Q4003Q40Q040Q400Q4Q4Q4Q4Q0000004Q3Q5Q4Q5Q5Qqfq8",
+        "size": [800, 600]
+      },
+      "category_id": 1,
+      "iscrowd": 0
+    },
+    {
+      "id": 8,
+      "image_id": 10000005,
+      "source": "manual",
+      "area": 0.03500,
+      "bbox": [0.22000, 0.45000, 0.15000, 0.08000],
+      "segmentation": {
+        "counts": "fBf05fb19R5R5R5R005R5R5R005R5R40002R5R005R005R0000000004R5005004R050R06R005R40004R0504000R50R5004R50R050R500R5R5R5R5R0000005R4R6R5R6R6Rrgr9",
+        "size": [600, 600]
+      },
+      "category_id": 1,
+      "iscrowd": 1
+    },
+    {
+      "id": 9,
+      "image_id": 10000006,
+      "source": "manual",
+      "area": 0.12000,
+      "bbox": [0.05000, 0.08000, 0.52000, 0.38000],
+      "segmentation": {
+        "counts": "gCg16gc20S6S6S6S006S6S6S006S6S50002S6S006S006S0000000005S6006005S060S07S006S50005S0605000S60S6005S60S060S600S6S6S6S6S0000006S5S7S6S7S7Sshs10",
+        "size": [600, 600]
+      },
+      "category_id": 1,
+      "iscrowd": 0
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "object"
+    }
+  ]
+}
