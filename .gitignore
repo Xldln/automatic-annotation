@@ -1,4 +1,5 @@
 .crush
+.vscode
 
 weights/*
 
